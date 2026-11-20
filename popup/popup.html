@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Google Docs Dark Mode</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <div class="brand">
+        <span class="brand-icon" aria-hidden="true">🌙</span>
+        <div>
+          <h1>Docs Dark Mode</h1>
+          <p class="subtitle">Google Docs</p>
+        </div>
+      </div>
+      <span id="status-pill" class="status-pill">Active</span>
+    </header>
+
+    <section class="card">
+      <div class="section-label">Mode</div>
+      <div class="segmented" role="radiogroup" aria-label="Dark mode state">
+        <button type="button" class="seg-btn" data-mode="on">On</button>
+        <button type="button" class="seg-btn" data-mode="auto">Auto</button>
+        <button type="button" class="seg-btn" data-mode="off">Off</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-label">Theme</div>
+      <div class="theme-grid" role="radiogroup" aria-label="Color theme">
+        <button type="button" class="theme-btn" data-theme="charcoal">
+          <span class="swatch swatch-charcoal"></span>
+          <span>Charcoal</span>
+        </button>
+        <button type="button" class="theme-btn" data-theme="midnight">
+          <span class="swatch swatch-midnight"></span>
+          <span>Midnight</span>
+        </button>
+        <button type="button" class="theme-btn" data-theme="oled">
+          <span class="swatch swatch-oled"></span>
+          <span>OLED</span>
+        </button>
+        <button type="button" class="theme-btn" data-theme="warm">
+          <span class="swatch swatch-warm"></span>
+          <span>Warm</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="card">
+      <label class="toggle-row" for="invert-page">
+        <div>
+          <div class="toggle-title">Dark document page</div>
+          <div class="toggle-desc">Invert canvas for dark paper &amp; light text</div>
+        </div>
+        <span class="switch">
+          <input type="checkbox" id="invert-page" />
+          <span class="slider"></span>
+        </span>
+      </label>
+
+      <div id="page-tuning" class="tuning">
+        <div class="range-row">
+          <div class="range-header">
+            <label for="brightness">Page brightness</label>
+            <span id="brightness-val">100%</span>
+          </div>
+          <input type="range" id="brightness" min="70" max="120" step="1" value="100" />
+        </div>
+
+        <div class="range-row">
+          <div class="range-header">
+            <label for="contrast">Page contrast</label>
+            <span id="contrast-val">95%</span>
+          </div>
+          <input type="range" id="contrast" min="75" max="120" step="1" value="95" />
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="shortcuts">
+        <span><kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd> Toggle</span>
+        <span><kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> Page</span>
+      </div>
+      <button type="button" id="reset-btn" class="reset-btn">Reset</button>
+    </footer>
+  </main>
+
+  <script src="popup.js"></script>
+</body>
+</html>

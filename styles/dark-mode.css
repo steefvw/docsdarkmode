@@ -1,0 +1,679 @@
+/* ==========================================================================
+   Google Docs Dark Mode
+   Scoped under html[data-gddm-active="true"] so turning off restores native UI.
+   ========================================================================== */
+
+html[data-gddm-active="true"] {
+  color-scheme: dark;
+
+  /* Default: Charcoal theme */
+  --gddm-bg: #121316;
+  --gddm-workspace-bg: #16181d;
+  --gddm-surface: #1e2025;
+  --gddm-surface-2: #262930;
+  --gddm-surface-hover: #30343d;
+  --gddm-surface-active: #393f4c;
+  --gddm-border: #323640;
+  --gddm-text: #e6e8ee;
+  --gddm-text-muted: #9ca3b0;
+  --gddm-accent: #8ab4f8;
+  --gddm-accent-bg: rgba(138, 180, 248, 0.16);
+  --gddm-caret: #e6e8ee;
+  --gddm-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+  --gddm-canvas-filter: invert(0.88) hue-rotate(180deg) brightness(1) contrast(0.95);
+
+  /* Override Google Material 3 (GM3) & Docs design tokens for modern FABs/pills */
+  --gm3-sys-color-surface: var(--gddm-surface);
+  --gm3-sys-color-surface-container: var(--gddm-surface-2);
+  --gm3-sys-color-surface-container-low: var(--gddm-surface);
+  --gm3-sys-color-surface-container-high: var(--gddm-surface-2);
+  --gm3-sys-color-surface-container-highest: var(--gddm-surface-hover);
+  --gm3-sys-color-primary-container: var(--gddm-surface-2);
+  --gm3-sys-color-on-primary-container: var(--gddm-accent);
+  --gm3-sys-color-on-surface: var(--gddm-text);
+  --gm3-sys-color-on-surface-variant: var(--gddm-text-muted);
+  --gm3-sys-color-outline: var(--gddm-border);
+  --gm3-sys-color-outline-variant: var(--gddm-border);
+  --dt-surface: var(--gddm-surface);
+  --dt-surface-container: var(--gddm-surface-2);
+  --dt-surface-container-high: var(--gddm-surface-hover);
+  --dt-on-surface: var(--gddm-text);
+  --dt-on-surface-variant: var(--gddm-text-muted);
+}
+
+html[data-gddm-active="true"][data-gddm-theme="midnight"] {
+  --gddm-bg: #0b1020;
+  --gddm-workspace-bg: #0f1629;
+  --gddm-surface: #151e34;
+  --gddm-surface-2: #1c2844;
+  --gddm-surface-hover: #243356;
+  --gddm-surface-active: #2c3e68;
+  --gddm-border: #263554;
+  --gddm-text: #e4ecfa;
+  --gddm-text-muted: #8fa3c7;
+  --gddm-accent: #7cb3ff;
+  --gddm-accent-bg: rgba(124, 179, 255, 0.18);
+  --gddm-caret: #e4ecfa;
+}
+
+html[data-gddm-active="true"][data-gddm-theme="oled"] {
+  --gddm-bg: #000000;
+  --gddm-workspace-bg: #050507;
+  --gddm-surface: #0c0d10;
+  --gddm-surface-2: #15171c;
+  --gddm-surface-hover: #1e2128;
+  --gddm-surface-active: #272b35;
+  --gddm-border: #23262f;
+  --gddm-text: #f0f2f5;
+  --gddm-text-muted: #98a0ad;
+  --gddm-accent: #8ab4f8;
+  --gddm-accent-bg: rgba(138, 180, 248, 0.18);
+  --gddm-caret: #ffffff;
+}
+
+html[data-gddm-active="true"][data-gddm-theme="warm"] {
+  --gddm-bg: #171512;
+  --gddm-workspace-bg: #1c1916;
+  --gddm-surface: #24201c;
+  --gddm-surface-2: #2d2823;
+  --gddm-surface-hover: #38322c;
+  --gddm-surface-active: #443c35;
+  --gddm-border: #3d362f;
+  --gddm-text: #ebe3d7;
+  --gddm-text-muted: #aba092;
+  --gddm-accent: #e5b567;
+  --gddm-accent-bg: rgba(229, 181, 103, 0.18);
+  --gddm-caret: #ebe3d7;
+}
+
+/* ---------- Base & Workspace Background ---------- */
+
+html[data-gddm-active="true"],
+html[data-gddm-active="true"] body {
+  background-color: var(--gddm-bg) !important;
+  color: var(--gddm-text) !important;
+}
+
+html[data-gddm-active="true"] #docs-editor-container,
+html[data-gddm-active="true"] #docs-editor,
+html[data-gddm-active="true"] .kix-appview-editor,
+html[data-gddm-active="true"] .kix-appview-editor-container,
+html[data-gddm-active="true"] .kix-scrollareadocumentplugin {
+  background-color: var(--gddm-workspace-bg) !important;
+}
+
+/* ---------- Header, Titlebar & Menubar ---------- */
+
+html[data-gddm-active="true"] #docs-chrome,
+html[data-gddm-active="true"] #docs-header,
+html[data-gddm-active="true"] #docs-header-container,
+html[data-gddm-active="true"] #docs-titlebar-container,
+html[data-gddm-active="true"] .docs-titlebar-container,
+html[data-gddm-active="true"] .docs-titlebar-buttons,
+html[data-gddm-active="true"] .docs-titlebar-badges,
+html[data-gddm-active="true"] #docs-bars,
+html[data-gddm-active="true"] .docs-material #docs-header .docs-titlebar-buttons {
+  background-color: var(--gddm-surface) !important;
+  color: var(--gddm-text) !important;
+  border-color: var(--gddm-border) !important;
+}
+
+html[data-gddm-active="true"] .docs-title-outer,
+html[data-gddm-active="true"] #docs-menubar {
+  background-color: transparent !important;
+  color: var(--gddm-text) !important;
+  border-color: var(--gddm-border) !important;
+}
+
+/* Right-side titlebar icon buttons (History, Comments, Meet, etc.) */
+html[data-gddm-active="true"] .docs-titlebar-buttons .goog-button,
+html[data-gddm-active="true"] .docs-titlebar-buttons [role="button"]:not(.docs-titlebar-share-client-button):not([id*="share"]),
+html[data-gddm-active="true"] .docs-titlebar-buttons button:not(.docs-titlebar-share-client-button) {
+  background-color: transparent !important;
+  color: var(--gddm-text) !important;
+}
+
+html[data-gddm-active="true"] .docs-titlebar-buttons .goog-button:hover,
+html[data-gddm-active="true"] .docs-titlebar-buttons [role="button"]:not(.docs-titlebar-share-client-button):not([id*="share"]):hover,
+html[data-gddm-active="true"] .docs-titlebar-buttons button:not(.docs-titlebar-share-client-button):hover {
+  background-color: var(--gddm-surface-hover) !important;
+}
+
+/* Share button: keep readable dark-mode blue pill */
+html[data-gddm-active="true"] .docs-titlebar-share-client-button,
+html[data-gddm-active="true"] #docs-titlebar-share-client-button .jfk-button,
+html[data-gddm-active="true"] #docs-titlebar-share-client-button [role="button"] {
+  background-color: #254a7c !important;
+  color: #e8f0fe !important;
+  border-color: #3665a3 !important;
+}
+
+html[data-gddm-active="true"] #docs-titlebar-share-client-button [role="button"]:hover {
+  background-color: #2f5b96 !important;
+}
+
+/* Google Docs displays .docs-title-input-label when unfocused and .docs-title-input when focused */
+html[data-gddm-active="true"] .docs-title-input-label,
+html[data-gddm-active="true"] .docs-title-input-label-inner {
+  background-color: transparent !important;
+  color: var(--gddm-text) !important;
+}
+
+html[data-gddm-active="true"] .docs-title-input:not(:focus) {
+  background-color: transparent !important;
+  color: transparent !important;
+}
+
+html[data-gddm-active="true"] .docs-title-input:focus {
+  background-color: var(--gddm-surface-2) !important;
+  color: var(--gddm-text) !important;
+  border-color: var(--gddm-accent) !important;
+}
+
+html[data-gddm-active="true"] .menu-button,
+html[data-gddm-active="true"] .docs-menubar .goog-control {
+  color: var(--gddm-text) !important;
+  background-color: transparent !important;
+}
+
+html[data-gddm-active="true"] .menu-button.goog-control-hover,
+html[data-gddm-active="true"] .menu-button.goog-control-open {
+  background-color: var(--gddm-surface-hover) !important;
+  color: var(--gddm-text) !important;
+}
+
+/* ---------- Main Toolbar ---------- */
+
+html[data-gddm-active="true"] #docs-toolbar-wrapper,
+html[data-gddm-active="true"] .docs-main-toolbars,
+html[data-gddm-active="true"] #docs-primary-toolbars,
+html[data-gddm-active="true"] .docs-material #docs-toolbar-wrapper {
+  background-color: var(--gddm-surface-2) !important;
+  border-color: var(--gddm-border) !important;
+  box-shadow: none !important;
+}
+
+/* Remove white button backgrounds across all toolbar controls */
+html[data-gddm-active="true"] #docs-toolbar-wrapper .goog-toolbar-button,
+html[data-gddm-active="true"] #docs-toolbar-wrapper .goog-toolbar-menu-button,
+html[data-gddm-active="true"] #docs-toolbar-wrapper .goog-toolbar-combo-button,
+html[data-gddm-active="true"] #docs-toolbar-wrapper .goog-toolbar-select,
+html[data-gddm-active="true"] #docs-toolbar-wrapper .goog-toolbar-button-outer-box,
+html[data-gddm-active="true"] #docs-toolbar-wrapper .goog-toolbar-button-inner-box,
+html[data-gddm-active="true"] #docs-toolbar-wrapper .goog-toolbar-menu-button-outer-box,
+html[data-gddm-active="true"] #docs-toolbar-wrapper .goog-toolbar-menu-button-inner-box,
+html[data-gddm-active="true"] #docs-toolbar-wrapper .goog-toolbar-combo-button-outer-box,
+html[data-gddm-active="true"] #docs-toolbar-wrapper .goog-toolbar-combo-button-inner-box,
+html[data-gddm-active="true"] #docs-toolbar-wrapper .docs-toolbar-button-split-left,
+html[data-gddm-active="true"] #docs-toolbar-wrapper .docs-toolbar-button-split-right,
+html[data-gddm-active="true"] #docs-toolbar-wrapper .docs-toolbar-mode-switcher,
+html[data-gddm-active="true"] #docs-toolbar-wrapper #docs-toolbar-mode-switcher,
+html[data-gddm-active="true"] #docs-toolbar-wrapper #viewModeButton,
+html[data-gddm-active="true"] #docs-toolbar-wrapper .docs-toolbar-small-pill,
+html[data-gddm-active="true"] #docs-toolbar-wrapper [role="button"],
+html[data-gddm-active="true"] #docs-toolbar-wrapper [role="listbox"],
+html[data-gddm-active="true"] #docs-toolbar-wrapper [role="combobox"],
+html[data-gddm-active="true"] #docs-toolbar-wrapper button {
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  color: var(--gddm-text) !important;
+}
+
+html[data-gddm-active="true"] #docs-toolbar-wrapper .goog-toolbar-menu-button-caption,
+html[data-gddm-active="true"] #docs-toolbar-wrapper .goog-toolbar-combo-button-caption,
+html[data-gddm-active="true"] #docs-toolbar-wrapper .docs-toolbar-mode-switcher-caption {
+  color: var(--gddm-text) !important;
+}
+
+html[data-gddm-active="true"] #docs-toolbar-wrapper .goog-toolbar-button-hover,
+html[data-gddm-active="true"] #docs-toolbar-wrapper .goog-toolbar-menu-button-hover,
+html[data-gddm-active="true"] #docs-toolbar-wrapper .goog-toolbar-combo-button-hover,
+html[data-gddm-active="true"] #docs-toolbar-wrapper [role="button"]:hover,
+html[data-gddm-active="true"] #docs-toolbar-wrapper button:hover {
+  background-color: var(--gddm-surface-hover) !important;
+  border-color: transparent !important;
+}
+
+html[data-gddm-active="true"] #docs-toolbar-wrapper .goog-toolbar-button-checked,
+html[data-gddm-active="true"] #docs-toolbar-wrapper .goog-toolbar-menu-button-open,
+html[data-gddm-active="true"] #docs-toolbar-wrapper .goog-toolbar-combo-button-open {
+  background-color: var(--gddm-accent-bg) !important;
+  color: var(--gddm-accent) !important;
+}
+
+html[data-gddm-active="true"] #docs-toolbar-wrapper .goog-toolbar-separator {
+  border-color: var(--gddm-border) !important;
+}
+
+/* Toolbar inputs (Menus omnibox, Zoom %, Font size) */
+html[data-gddm-active="true"] #docs-toolbar-wrapper input,
+html[data-gddm-active="true"] .docs-font-size-inc-dec-combobox input,
+html[data-gddm-active="true"] .goog-toolbar-combo-button-input,
+html[data-gddm-active="true"] .docs-omnibox-input {
+  background-color: var(--gddm-surface) !important;
+  color: var(--gddm-text) !important;
+  border-color: var(--gddm-border) !important;
+}
+
+html[data-gddm-active="true"] #docs-toolbar-wrapper input::placeholder,
+html[data-gddm-active="true"] .docs-omnibox-input::placeholder {
+  color: var(--gddm-text-muted) !important;
+}
+
+/* Dropdown arrows */
+html[data-gddm-active="true"] #docs-toolbar-wrapper .goog-toolbar-menu-button-dropdown,
+html[data-gddm-active="true"] #docs-toolbar-wrapper .goog-toolbar-combo-button-dropdown {
+  border-top-color: var(--gddm-text) !important;
+}
+
+/* ---------- Icons (Sprites + Inline SVGs) ---------- */
+
+/* Sprite-based icons */
+html[data-gddm-active="true"] #docs-toolbar-wrapper .docs-icon-img:not(:has(svg)),
+html[data-gddm-active="true"] #docs-header .docs-icon-img:not(:has(svg)),
+html[data-gddm-active="true"] .goog-menu .docs-icon-img:not(:has(svg)),
+html[data-gddm-active="true"] .left-sidebar-container .docs-icon-img:not(:has(svg)),
+html[data-gddm-active="true"] .navigation-widget .docs-icon-img:not(:has(svg)),
+html[data-gddm-active="true"] .docs-companion-app-switcher-container .docs-icon-img:not(:has(svg)),
+html[data-gddm-active="true"] .companion-collapser-button-container .docs-icon-img:not(:has(svg)),
+html[data-gddm-active="true"] .docs-toolbar-mode-switcher .docs-icon-img:not(:has(svg)) {
+  filter: invert(0.88) hue-rotate(180deg) !important;
+}
+
+/* Inline SVG icons in toolbar, header, menus, sidebars & floating controls */
+html[data-gddm-active="true"] #docs-toolbar-wrapper svg,
+html[data-gddm-active="true"] .docs-titlebar-buttons svg,
+html[data-gddm-active="true"] .goog-menu svg,
+html[data-gddm-active="true"] .left-sidebar-container svg,
+html[data-gddm-active="true"] .companion-collapser-button-container svg,
+html[data-gddm-active="true"] .docs-companion-app-switcher-container svg {
+  color: var(--gddm-text) !important;
+}
+
+html[data-gddm-active="true"] #docs-toolbar-wrapper svg path:not([fill="none"]),
+html[data-gddm-active="true"] #docs-toolbar-wrapper svg circle:not([fill="none"]),
+html[data-gddm-active="true"] #docs-toolbar-wrapper svg rect:not([fill="none"]),
+html[data-gddm-active="true"] #docs-toolbar-wrapper svg polygon:not([fill="none"]),
+html[data-gddm-active="true"] .docs-titlebar-buttons [role="button"]:not(.docs-titlebar-share-client-button) svg path:not([fill="none"]),
+html[data-gddm-active="true"] .docs-titlebar-buttons button:not(.docs-titlebar-share-client-button) svg path:not([fill="none"]),
+html[data-gddm-active="true"] .goog-menu svg path:not([fill="none"]),
+html[data-gddm-active="true"] .left-sidebar-container svg path:not([fill="none"]),
+html[data-gddm-active="true"] .companion-collapser-button-container svg path:not([fill="none"]) {
+  fill: var(--gddm-text) !important;
+}
+
+/* Preserve Google Docs brand logo, color indicator bars, & user avatars */
+html[data-gddm-active="true"] #docs-branding-logo .docs-icon-img,
+html[data-gddm-active="true"] #docs-branding-logo svg,
+html[data-gddm-active="true"] .docs-icon-docs-logo,
+html[data-gddm-active="true"] .docs-icon-color-indicator,
+html[data-gddm-active="true"] .docs-titlebar-share-client-button .docs-icon-img,
+html[data-gddm-active="true"] .docs-titlebar-buttons img {
+  filter: none !important;
+}
+
+html[data-gddm-active="true"] #docs-titlebar-share-client-button svg path:not([fill="none"]) {
+  fill: #e8f0fe !important;
+}
+
+/* ---------- Horizontal & Vertical Rulers ---------- */
+
+html[data-gddm-active="true"] #kix-ruler,
+html[data-gddm-active="true"] #kix-vertical-ruler,
+html[data-gddm-active="true"] #docs-ruler-container,
+html[data-gddm-active="true"] .docs-horizontal-ruler,
+html[data-gddm-active="true"] .docs-vertical-ruler,
+html[data-gddm-active="true"] .docs-vertical-ruler-container,
+html[data-gddm-active="true"] .docs-ruler-corner,
+html[data-gddm-active="true"] .kix-ruler-corner,
+html[data-gddm-active="true"] .docs-ruler-outer,
+html[data-gddm-active="true"] .docs-ruler-inner,
+html[data-gddm-active="true"] .docs-ruler-background,
+html[data-gddm-active="true"] .docs-ruler-background-inner,
+html[data-gddm-active="true"] .docs-ruler-face,
+html[data-gddm-active="true"] .docs-ruler-face-inner,
+html[data-gddm-active="true"] .kix-ruler-background-inner,
+html[data-gddm-active="true"] .kix-ruler-face {
+  background-color: var(--gddm-surface) !important;
+  border-color: var(--gddm-border) !important;
+  color: var(--gddm-text-muted) !important;
+}
+
+html[data-gddm-active="true"] .docs-ruler-face-first-division,
+html[data-gddm-active="true"] .docs-ruler-face-minor-division,
+html[data-gddm-active="true"] .docs-ruler-face-major-division,
+html[data-gddm-active="true"] .docs-ruler-face-number,
+html[data-gddm-active="true"] .kix-ruler-face-number,
+html[data-gddm-active="true"] .kix-ruler-face-minor-division,
+html[data-gddm-active="true"] .kix-ruler-face-major-division {
+  color: var(--gddm-text-muted) !important;
+  border-color: var(--gddm-border) !important;
+  background-color: transparent !important;
+}
+
+html[data-gddm-active="true"] .docs-ruler-mask {
+  background-color: var(--gddm-surface-2) !important;
+}
+
+/* ---------- Document Pages & Canvas Inversion ---------- */
+
+html[data-gddm-active="true"] .kix-page-paginated {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.55) !important;
+  border-color: var(--gddm-border) !important;
+}
+
+html[data-gddm-active="true"][data-gddm-invert-page="true"] .kix-canvas-tile-content,
+html[data-gddm-active="true"][data-gddm-invert-page="true"] .kix-paginateddocumentplugin canvas,
+html[data-gddm-active="true"][data-gddm-invert-page="true"] .kix-page-paginated canvas {
+  filter: var(--gddm-canvas-filter) !important;
+  transition: filter 120ms ease;
+}
+
+/* Ensure page container behind canvas tiles matches dark theme during fast scroll */
+html[data-gddm-active="true"][data-gddm-invert-page="true"] .kix-page-paginated,
+html[data-gddm-active="true"][data-gddm-invert-page="true"] .kix-page-content-wrapper {
+  background-color: var(--gddm-surface) !important;
+}
+
+/* Keep cursor caret clearly visible on inverted pages */
+html[data-gddm-active="true"][data-gddm-invert-page="true"] .kix-cursor-caret {
+  border-color: var(--gddm-caret) !important;
+}
+
+/* ---------- Left Sidebar (Document Outline / Tabs & Floating Button) ---------- */
+
+html[data-gddm-active="true"] .left-sidebar-container,
+html[data-gddm-active="true"] .navigation-widget,
+html[data-gddm-active="true"] .navigation-widget-hat,
+html[data-gddm-active="true"] .navigation-widget-content,
+html[data-gddm-active="true"] .outline-refresh {
+  background-color: var(--gddm-surface) !important;
+  color: var(--gddm-text) !important;
+  border-color: var(--gddm-border) !important;
+}
+
+html[data-gddm-active="true"] .left-sidebar-container-content {
+  background-color: transparent !important;
+}
+
+html[data-gddm-active="true"] .left-sidebar-container button,
+html[data-gddm-active="true"] .left-sidebar-container [role="button"],
+html[data-gddm-active="true"] .navigation-widget-floating-button,
+html[data-gddm-active="true"] .chapter-and-outline-expand-button,
+html[data-gddm-active="true"] #docs-editor [aria-label*="tabs" i],
+html[data-gddm-active="true"] #docs-editor [aria-label*="outline" i],
+html[data-gddm-active="true"] #docs-editor [data-tooltip*="tabs" i],
+html[data-gddm-active="true"] #docs-editor [data-tooltip*="outline" i],
+html[data-gddm-active="true"] .left-sidebar-container-content [role="button"],
+html[data-gddm-active="true"] .left-sidebar-container-content button {
+  background-color: var(--gddm-surface-2) !important;
+  color: var(--gddm-text) !important;
+  border: 1px solid var(--gddm-border) !important;
+  box-shadow: var(--gddm-shadow) !important;
+}
+
+/* Clear any inner light container/backdrop inside the Show tabs & outlines FAB */
+html[data-gddm-active="true"] #docs-editor [aria-label*="tabs" i] > div,
+html[data-gddm-active="true"] #docs-editor [aria-label*="outline" i] > div,
+html[data-gddm-active="true"] #docs-editor [data-tooltip*="tabs" i] > div,
+html[data-gddm-active="true"] #docs-editor [data-tooltip*="outline" i] > div,
+html[data-gddm-active="true"] .left-sidebar-container [role="button"] > div,
+html[data-gddm-active="true"] .left-sidebar-container button > div {
+  background-color: transparent !important;
+}
+
+html[data-gddm-active="true"] #docs-editor [aria-label*="tabs" i] .docs-icon-img:not(:has(svg)),
+html[data-gddm-active="true"] #docs-editor [aria-label*="outline" i] .docs-icon-img:not(:has(svg)),
+html[data-gddm-active="true"] #docs-editor [data-tooltip*="tabs" i] .docs-icon-img:not(:has(svg)),
+html[data-gddm-active="true"] #docs-editor [data-tooltip*="outline" i] .docs-icon-img:not(:has(svg)) {
+  filter: invert(0.88) hue-rotate(180deg) !important;
+}
+
+html[data-gddm-active="true"] #docs-editor [aria-label*="tabs" i] svg path:not([fill="none"]),
+html[data-gddm-active="true"] #docs-editor [aria-label*="outline" i] svg path:not([fill="none"]),
+html[data-gddm-active="true"] #docs-editor [data-tooltip*="tabs" i] svg path:not([fill="none"]),
+html[data-gddm-active="true"] #docs-editor [data-tooltip*="outline" i] svg path:not([fill="none"]) {
+  fill: var(--gddm-text) !important;
+}
+
+html[data-gddm-active="true"] .left-sidebar-container button:hover,
+html[data-gddm-active="true"] .left-sidebar-container [role="button"]:hover,
+html[data-gddm-active="true"] #docs-editor [aria-label*="tabs" i]:hover,
+html[data-gddm-active="true"] #docs-editor [aria-label*="outline" i]:hover {
+  background-color: var(--gddm-surface-hover) !important;
+}
+
+html[data-gddm-active="true"] .navigation-item-content,
+html[data-gddm-active="true"] .navigation-widget-header,
+html[data-gddm-active="true"] .navigation-widget-empty-content {
+  color: var(--gddm-text) !important;
+}
+
+html[data-gddm-active="true"] .navigation-item:hover {
+  background-color: var(--gddm-surface-hover) !important;
+}
+
+html[data-gddm-active="true"] .location-indicator-highlight.navigation-item {
+  background-color: var(--gddm-accent-bg) !important;
+  color: var(--gddm-accent) !important;
+}
+
+/* ---------- Right Companion Sidebar & Bottom-Right Collapse Tab ---------- */
+
+html[data-gddm-active="true"] .docs-companion-app-switcher-container,
+html[data-gddm-active="true"] .companion-app-switcher-container {
+  background-color: var(--gddm-surface) !important;
+  border-color: var(--gddm-border) !important;
+}
+
+html[data-gddm-active="true"] .companion-collapser-button-container,
+html[data-gddm-active="true"] .companion-collapser-button-container button,
+html[data-gddm-active="true"] .companion-collapser-button-container [role="button"],
+html[data-gddm-active="true"] .companion-collapser-button {
+  background-color: var(--gddm-surface-2) !important;
+  color: var(--gddm-text) !important;
+  border-color: var(--gddm-border) !important;
+  box-shadow: var(--gddm-shadow) !important;
+}
+
+html[data-gddm-active="true"] .companion-collapser-button-container:hover,
+html[data-gddm-active="true"] .companion-collapser-button-container button:hover {
+  background-color: var(--gddm-surface-hover) !important;
+}
+
+/* ---------- Floating Bottom Action / Gemini Pill ---------- */
+
+html[data-gddm-active="true"] #docs-editor [aria-label*="Gemini" i],
+html[data-gddm-active="true"] #docs-editor [aria-label*="Help me write" i],
+html[data-gddm-active="true"] #docs-editor [data-tooltip*="Gemini" i],
+html[data-gddm-active="true"] #docs-editor [data-tooltip*="Help me write" i],
+html[data-gddm-active="true"] #docs-editor-container [aria-label*="Gemini" i],
+html[data-gddm-active="true"] #docs-editor-container [aria-label*="Help me write" i],
+html[data-gddm-active="true"] button[aria-label*="Gemini" i],
+html[data-gddm-active="true"] button[aria-label*="Help me write" i],
+html[data-gddm-active="true"] [role="button"][aria-label*="Help me write" i],
+html[data-gddm-active="true"] [role="button"][aria-label*="Invoke Gemini" i],
+html[data-gddm-active="true"] #docs-editor-container [role="button"][class*="pill"],
+html[data-gddm-active="true"] #docs-editor-container button[class*="pill"],
+html[data-gddm-active="true"] #docs-editor-container [class*="floating"] button,
+html[data-gddm-active="true"] #docs-editor-container [class*="floating"] [role="button"],
+html[data-gddm-active="true"] .docs-ai-floating-button,
+html[data-gddm-active="true"] .docs-bottom-floating-pill,
+html[data-gddm-active="true"] .kix-appview-editor-container > div:last-child button,
+html[data-gddm-active="true"] .kix-appview-editor-container > div:last-child [role="button"] {
+  background-color: var(--gddm-surface-2) !important;
+  background-image: none !important;
+  color: var(--gddm-text) !important;
+  border: 1px solid var(--gddm-border) !important;
+  box-shadow: var(--gddm-shadow) !important;
+}
+
+html[data-gddm-active="true"] button[aria-label*="Gemini" i] svg path:not([fill="none"]),
+html[data-gddm-active="true"] button[aria-label*="Help me write" i] svg path:not([fill="none"]),
+html[data-gddm-active="true"] [role="button"][aria-label*="Help me write" i] svg path:not([fill="none"]),
+html[data-gddm-active="true"] [role="button"][aria-label*="Invoke Gemini" i] svg path:not([fill="none"]) {
+  fill: var(--gddm-accent) !important;
+}
+
+html[data-gddm-active="true"] #docs-editor [aria-label*="Gemini" i] > div,
+html[data-gddm-active="true"] #docs-editor [aria-label*="Help me write" i] > div,
+html[data-gddm-active="true"] #docs-editor [data-tooltip*="Gemini" i] > div,
+html[data-gddm-active="true"] #docs-editor [data-tooltip*="Help me write" i] > div {
+  background-color: transparent !important;
+}
+
+html[data-gddm-active="true"] #docs-editor [aria-label*="Gemini" i]:hover,
+html[data-gddm-active="true"] #docs-editor [aria-label*="Help me write" i]:hover,
+html[data-gddm-active="true"] #docs-editor [data-tooltip*="Gemini" i]:hover,
+html[data-gddm-active="true"] #docs-editor [data-tooltip*="Help me write" i]:hover {
+  background-color: var(--gddm-surface-hover) !important;
+}
+
+html[data-gddm-active="true"] #docs-editor [aria-label*="Gemini" i] .docs-icon-img:not(:has(svg)),
+html[data-gddm-active="true"] #docs-editor [aria-label*="Help me write" i] .docs-icon-img:not(:has(svg)),
+html[data-gddm-active="true"] #docs-editor [data-tooltip*="Gemini" i] .docs-icon-img:not(:has(svg)),
+html[data-gddm-active="true"] #docs-editor [data-tooltip*="Help me write" i] .docs-icon-img:not(:has(svg)) {
+  filter: invert(0.88) hue-rotate(180deg) !important;
+}
+
+html[data-gddm-active="true"] #docs-editor [aria-label*="Gemini" i] svg path:not([fill="none"]),
+html[data-gddm-active="true"] #docs-editor [aria-label*="Help me write" i] svg path:not([fill="none"]),
+html[data-gddm-active="true"] #docs-editor [data-tooltip*="Gemini" i] svg path:not([fill="none"]),
+html[data-gddm-active="true"] #docs-editor [data-tooltip*="Help me write" i] svg path:not([fill="none"]),
+html[data-gddm-active="true"] #docs-editor-container [class*="floating"] svg path:not([fill="none"]),
+html[data-gddm-active="true"] .docs-ai-floating-button svg path:not([fill="none"]) {
+  fill: var(--gddm-accent) !important;
+}
+
+/* ---------- Comments & Suggestions ---------- */
+
+html[data-gddm-active="true"] .docos-docoview-tesla-conflict,
+html[data-gddm-active="true"] .docos-stream-view,
+html[data-gddm-active="true"] .docos-anchoredreplyview,
+html[data-gddm-active="true"] .docos-replyview-static,
+html[data-gddm-active="true"] .docos-input,
+html[data-gddm-active="true"] .docos-docoview-rootpagination {
+  background-color: var(--gddm-surface) !important;
+  color: var(--gddm-text) !important;
+  border-color: var(--gddm-border) !important;
+}
+
+html[data-gddm-active="true"] .docos-replyview-body,
+html[data-gddm-active="true"] .docos-replyview-author,
+html[data-gddm-active="true"] .docos-replyview-timestamp {
+  color: var(--gddm-text) !important;
+}
+
+html[data-gddm-active="true"] .docos-input-textarea {
+  background-color: var(--gddm-surface-2) !important;
+  color: var(--gddm-text) !important;
+  border-color: var(--gddm-border) !important;
+}
+
+/* ---------- Menus, Dropdowns, Popovers & Modals ---------- */
+
+html[data-gddm-active="true"] .goog-menu,
+html[data-gddm-active="true"] .docs-menu-attached-button-above,
+html[data-gddm-active="true"] .docs-palette,
+html[data-gddm-active="true"] .modal-dialog,
+html[data-gddm-active="true"] .modal-dialog-title,
+html[data-gddm-active="true"] .modal-dialog-content,
+html[data-gddm-active="true"] .modal-dialog-buttons,
+html[data-gddm-active="true"] .docs-findinput-container,
+html[data-gddm-active="true"] .docs-slidingdialog {
+  background-color: var(--gddm-surface) !important;
+  color: var(--gddm-text) !important;
+  border-color: var(--gddm-border) !important;
+  box-shadow: var(--gddm-shadow) !important;
+}
+
+html[data-gddm-active="true"] .goog-menuitem,
+html[data-gddm-active="true"] .goog-menuitem-content,
+html[data-gddm-active="true"] .goog-menuitem-accel {
+  color: var(--gddm-text) !important;
+}
+
+html[data-gddm-active="true"] .goog-menuitem-disabled .goog-menuitem-content {
+  color: var(--gddm-text-muted) !important;
+  opacity: 0.6;
+}
+
+html[data-gddm-active="true"] .goog-menuitem-highlight,
+html[data-gddm-active="true"] .goog-menuitem-hover {
+  background-color: var(--gddm-surface-hover) !important;
+  border-color: transparent !important;
+}
+
+html[data-gddm-active="true"] .goog-menuseparator {
+  border-color: var(--gddm-border) !important;
+}
+
+html[data-gddm-active="true"] .modal-dialog input,
+html[data-gddm-active="true"] .modal-dialog textarea,
+html[data-gddm-active="true"] .modal-dialog select,
+html[data-gddm-active="true"] .docs-findinput-input {
+  background-color: var(--gddm-surface-2) !important;
+  color: var(--gddm-text) !important;
+  border-color: var(--gddm-border) !important;
+}
+
+/* ---------- Google Docs Home Screen (Recent Docs & Templates) ---------- */
+
+html[data-gddm-active="true"] .docs-homescreen-gb-container,
+html[data-gddm-active="true"] .docs-homescreen-gb-container header,
+html[data-gddm-active="true"] .docs-homescreen-templates-templateview-showcase,
+html[data-gddm-active="true"] .docs-homescreen-templates-bar,
+html[data-gddm-active="true"] .docs-homescreen-item-section,
+html[data-gddm-active="true"] .docs-homescreen-grid-header,
+html[data-gddm-active="true"] .docs-homescreen-list-header {
+  background-color: var(--gddm-bg) !important;
+  color: var(--gddm-text) !important;
+  border-color: var(--gddm-border) !important;
+}
+
+html[data-gddm-active="true"] .docs-homescreen-templates-templateview-container,
+html[data-gddm-active="true"] .docs-homescreen-grid-item,
+html[data-gddm-active="true"] .docs-homescreen-list-item {
+  background-color: var(--gddm-surface) !important;
+  color: var(--gddm-text) !important;
+  border-color: var(--gddm-border) !important;
+}
+
+html[data-gddm-active="true"] .docs-homescreen-grid-item:hover,
+html[data-gddm-active="true"] .docs-homescreen-list-item:hover {
+  background-color: var(--gddm-surface-hover) !important;
+}
+
+html[data-gddm-active="true"] .docs-homescreen-grid-item-title,
+html[data-gddm-active="true"] .docs-homescreen-list-item-title-value,
+html[data-gddm-active="true"] .docs-homescreen-templates-templateview-title {
+  color: var(--gddm-text) !important;
+}
+
+html[data-gddm-active="true"] .docs-homescreen-grid-item-metadata-container,
+html[data-gddm-active="true"] .docs-homescreen-list-item-owner,
+html[data-gddm-active="true"] .docs-homescreen-list-item-time {
+  color: var(--gddm-text-muted) !important;
+}
+
+/* ---------- Scrollbars ---------- */
+
+html[data-gddm-active="true"] ::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+html[data-gddm-active="true"] ::-webkit-scrollbar-track {
+  background: var(--gddm-bg);
+}
+
+html[data-gddm-active="true"] ::-webkit-scrollbar-thumb {
+  background-color: var(--gddm-surface-hover);
+  border-radius: 6px;
+  border: 2px solid var(--gddm-bg);
+}
+
+html[data-gddm-active="true"] ::-webkit-scrollbar-thumb:hover {
+  background-color: var(--gddm-surface-active);
+}
