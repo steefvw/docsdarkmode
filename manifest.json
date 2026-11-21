@@ -1,14 +1,14 @@
 {
   "manifest_version": 3,
-  "name": "Google Docs Dark Mode",
-  "version": "1.0.0",
-  "description": "Sleek, customizable dark mode for Google Docs with multiple themes, dark/light page toggle, and keyboard shortcuts.",
+  "name": "Google Docs & Sheets Dark Mode",
+  "version": "1.1.0",
+  "description": "Sleek, customizable dark mode for Google Docs and Google Sheets with multiple themes, dark/light canvas toggle, and keyboard shortcuts.",
   "permissions": [
     "storage"
   ],
   "action": {
     "default_popup": "popup/popup.html",
-    "default_title": "Google Docs Dark Mode",
+    "default_title": "Google Docs & Sheets Dark Mode",
     "default_icon": {
       "16": "icons/icon16.png",
       "32": "icons/icon32.png",
@@ -28,7 +28,8 @@
   "content_scripts": [
     {
       "matches": [
-        "https://docs.google.com/document/*"
+        "https://docs.google.com/document/*",
+        "https://docs.google.com/spreadsheets/*"
       ],
       "js": [
         "content.js"

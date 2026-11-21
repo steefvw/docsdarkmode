@@ -58,8 +58,10 @@
 
     const active = isDarkActive(currentSettings);
     const isShareDialog = window.location.pathname.includes("/drivesharing/");
+    const isSheets = window.location.pathname.startsWith("/spreadsheets/");
     root.dataset.gddmActive = active && !isShareDialog ? "true" : "false";
     root.dataset.gddmShareDialog = active && isShareDialog ? "true" : "false";
+    root.dataset.gddmApp = isSheets ? "sheets" : "docs";
     root.dataset.gddmTheme = currentSettings.theme;
     root.dataset.gddmInvertPage = currentSettings.invertPage ? "true" : "false";
 

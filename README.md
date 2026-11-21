@@ -1,17 +1,17 @@
-# Google Docs Dark Mode (Chrome Extension)
+# Google Docs & Sheets Dark Mode (Chrome Extension)
 
-A lightweight Manifest V3 Chrome extension that brings customizable dark mode to Google Docs—including both the editor chrome and the document canvas.
+A lightweight Manifest V3 Chrome extension that brings customizable dark mode to **Google Docs** and **Google Sheets**—including both the editor chrome and the document/spreadsheet canvas.
 
 ## Features
 
 - **4 Dark Themes:** Charcoal, Midnight, OLED Black, and Warm.
-- **Dark / Light Page Toggle:** Invert the Google Docs document canvas for comfortable night reading, or keep the page white while using a dark UI when checking print colors or images.
-- **Page Brightness & Contrast Sliders:** Fine-tune canvas legibility.
+- **Dark / Light Page & Sheet Toggle:** Invert the Google Docs page or Google Sheets grid canvas for comfortable night work, or keep the canvas light while using a dark UI when checking exact colors, charts, or images.
+- **Canvas Brightness & Contrast Sliders:** Fine-tune readability.
 - **System Theme Sync (`Auto`):** Automatically follows your OS dark/light mode preference.
 - **Zero Flash on Load:** Applies your cached theme at `document_start`.
 - **Keyboard Shortcuts:**
   - `Alt+Shift+D` (`Option+Shift+D` on Mac): Toggle dark mode on/off
-  - `Alt+Shift+P` (`Option+Shift+P` on Mac): Toggle dark page vs. light page
+  - `Alt+Shift+P` (`Option+Shift+P` on Mac): Toggle dark page/sheet vs. light page/sheet
 
 ## Installation (Load Unpacked in Chrome)
 
@@ -22,4 +22,4 @@ A lightweight Manifest V3 Chrome extension that brings customizable dark mode to
 2. Open Chrome and navigate to `chrome://extensions`.
 3. Enable **Developer mode** using the toggle in the top-right corner.
 4. Click **Load unpacked** and select the cloned `docsdarkmode` folder.
-5. Open or reload any Google Docs tab (`https://docs.google.com/document/...`).
+5. Open or reload any Google Docs (`https://docs.google.com/document/...`) or Google Sheets (`https://docs.google.com/spreadsheets/...`) tab.
