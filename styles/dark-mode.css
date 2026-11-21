@@ -22,9 +22,12 @@ html[data-gddm-active="true"] {
   --gddm-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
   --gddm-canvas-filter: invert(0.88) hue-rotate(180deg) brightness(1) contrast(0.95);
 
-  /* Override Google Material 3 (GM3) & Docs design tokens for modern FABs/pills */
+  /* Override Google Material 3 (GM3) & Docs design tokens for modern FABs/pills/dialogs */
+  --gm3-sys-color-background: var(--gddm-bg);
   --gm3-sys-color-surface: var(--gddm-surface);
+  --gm3-sys-color-surface-bright: var(--gddm-surface-2);
   --gm3-sys-color-surface-container: var(--gddm-surface-2);
+  --gm3-sys-color-surface-container-lowest: var(--gddm-bg);
   --gm3-sys-color-surface-container-low: var(--gddm-surface);
   --gm3-sys-color-surface-container-high: var(--gddm-surface-2);
   --gm3-sys-color-surface-container-highest: var(--gddm-surface-hover);
@@ -32,8 +35,13 @@ html[data-gddm-active="true"] {
   --gm3-sys-color-on-primary-container: var(--gddm-accent);
   --gm3-sys-color-on-surface: var(--gddm-text);
   --gm3-sys-color-on-surface-variant: var(--gddm-text-muted);
+  --gm3-sys-color-inverse-surface: var(--gddm-surface-2);
+  --gm3-sys-color-inverse-on-surface: var(--gddm-text);
   --gm3-sys-color-outline: var(--gddm-border);
   --gm3-sys-color-outline-variant: var(--gddm-border);
+  --gm3-dialog-container-color: var(--gddm-surface);
+  --gm3-dialog-headline-color: var(--gddm-text);
+  --gm3-dialog-supporting-text-color: var(--gddm-text);
   --dt-surface: var(--gddm-surface);
   --dt-surface-container: var(--gddm-surface-2);
   --dt-surface-container-high: var(--gddm-surface-hover);
@@ -111,14 +119,15 @@ html[data-gddm-active="true"] #docs-titlebar-container,
 html[data-gddm-active="true"] .docs-titlebar-container,
 html[data-gddm-active="true"] .docs-titlebar-buttons,
 html[data-gddm-active="true"] .docs-titlebar-badges,
-html[data-gddm-active="true"] #docs-bars,
 html[data-gddm-active="true"] .docs-material #docs-header .docs-titlebar-buttons {
   background-color: var(--gddm-surface) !important;
   color: var(--gddm-text) !important;
   border-color: var(--gddm-border) !important;
 }
 
+/* Keep #docs-bars, #docs-menubar, and .docs-title-outer transparent so they never clip focused title input */
 html[data-gddm-active="true"] .docs-title-outer,
+html[data-gddm-active="true"] #docs-bars,
 html[data-gddm-active="true"] #docs-menubar {
   background-color: transparent !important;
   color: var(--gddm-text) !important;
@@ -277,7 +286,13 @@ html[data-gddm-active="true"] .left-sidebar-container .docs-icon-img:not(:has(sv
 html[data-gddm-active="true"] .navigation-widget .docs-icon-img:not(:has(svg)),
 html[data-gddm-active="true"] .docs-companion-app-switcher-container .docs-icon-img:not(:has(svg)),
 html[data-gddm-active="true"] .companion-collapser-button-container .docs-icon-img:not(:has(svg)),
-html[data-gddm-active="true"] .docs-toolbar-mode-switcher .docs-icon-img:not(:has(svg)) {
+html[data-gddm-active="true"] .docs-toolbar-mode-switcher .docs-icon-img:not(:has(svg)),
+html[data-gddm-active="true"] .docs-sidebar-gm-titlebar-icon-button .docs-icon-img:not(:has(svg)),
+html[data-gddm-active="true"] .docos-stream-view .docs-icon-img:not(:has(svg)),
+html[data-gddm-active="true"] .docs-gm-sidebars .docs-icon-img:not(:has(svg)),
+html[data-gddm-active="true"] .appsDocsUiWizFindbarCard .docs-icon-img:not(:has(svg)),
+html[data-gddm-active="true"] .appsDocsUiWizFindandreplacedialogCard .docs-icon-img:not(:has(svg)),
+html[data-gddm-active="true"] [aria-label="Get Add-ons"] .app-switcher-button-icon-container {
   filter: invert(0.88) hue-rotate(180deg) !important;
 }
 
@@ -287,7 +302,11 @@ html[data-gddm-active="true"] .docs-titlebar-buttons svg,
 html[data-gddm-active="true"] .goog-menu svg,
 html[data-gddm-active="true"] .left-sidebar-container svg,
 html[data-gddm-active="true"] .companion-collapser-button-container svg,
-html[data-gddm-active="true"] .docs-companion-app-switcher-container svg {
+html[data-gddm-active="true"] .docs-companion-app-switcher-container svg,
+html[data-gddm-active="true"] .docs-sidebar-gm-titlebar-icon-button svg,
+html[data-gddm-active="true"] .docos-stream-view svg,
+html[data-gddm-active="true"] .appsDocsUiWizFindbarCard svg,
+html[data-gddm-active="true"] .appsDocsUiWizFindandreplacedialogCard svg {
   color: var(--gddm-text) !important;
 }
 
@@ -299,7 +318,10 @@ html[data-gddm-active="true"] .docs-titlebar-buttons [role="button"]:not(.docs-t
 html[data-gddm-active="true"] .docs-titlebar-buttons button:not(.docs-titlebar-share-client-button) svg path:not([fill="none"]),
 html[data-gddm-active="true"] .goog-menu svg path:not([fill="none"]),
 html[data-gddm-active="true"] .left-sidebar-container svg path:not([fill="none"]),
-html[data-gddm-active="true"] .companion-collapser-button-container svg path:not([fill="none"]) {
+html[data-gddm-active="true"] .companion-collapser-button-container svg path:not([fill="none"]),
+html[data-gddm-active="true"] .docs-sidebar-gm-titlebar-icon-button svg path:not([fill="none"]),
+html[data-gddm-active="true"] .appsDocsUiWizFindbarCard svg path:not([fill="none"]),
+html[data-gddm-active="true"] .appsDocsUiWizFindandreplacedialogCard svg path:not([fill="none"]) {
   fill: var(--gddm-text) !important;
 }
 
@@ -348,12 +370,13 @@ html[data-gddm-active="true"] .kix-ruler-face-number,
 html[data-gddm-active="true"] .kix-ruler-face-minor-division,
 html[data-gddm-active="true"] .kix-ruler-face-major-division {
   color: var(--gddm-text-muted) !important;
-  border-color: var(--gddm-border) !important;
+  border-color: var(--gddm-text-muted) !important;
   background-color: transparent !important;
 }
 
+/* Keep .docs-ruler-mask transparent so ruler numbers & tick divisions stay visible */
 html[data-gddm-active="true"] .docs-ruler-mask {
-  background-color: var(--gddm-surface-2) !important;
+  background-color: transparent !important;
 }
 
 /* ---------- Document Pages & Canvas Inversion ---------- */
@@ -590,11 +613,14 @@ html[data-gddm-active="true"] .docs-slidingdialog {
 
 html[data-gddm-active="true"] .goog-menuitem,
 html[data-gddm-active="true"] .goog-menuitem-content,
+html[data-gddm-active="true"] .goog-menuitem-content > .goog-menuitem-label,
+html[data-gddm-active="true"] .goog-menuitem-content > .goog-menuitem-label *,
 html[data-gddm-active="true"] .goog-menuitem-accel {
   color: var(--gddm-text) !important;
 }
 
-html[data-gddm-active="true"] .goog-menuitem-disabled .goog-menuitem-content {
+html[data-gddm-active="true"] .goog-menuitem-disabled .goog-menuitem-content,
+html[data-gddm-active="true"] .goog-menuitem-disabled .goog-menuitem-label {
   color: var(--gddm-text-muted) !important;
   opacity: 0.6;
 }
@@ -616,6 +642,137 @@ html[data-gddm-active="true"] .docs-findinput-input {
   background-color: var(--gddm-surface-2) !important;
   color: var(--gddm-text) !important;
   border-color: var(--gddm-border) !important;
+}
+
+/* ---------- Modern GM3 Wiz Dialogs (Word Count, Page Setup, Find & Replace, Find Bar) ---------- */
+
+html[data-gddm-active="true"] .javascriptMaterialdesignGm3WizDialog-dialog__surface,
+html[data-gddm-active="true"] [class*="Gm3WizDialog-dialog__surface"],
+html[data-gddm-active="true"] .appsDocsUiWizFindandreplacedialogCard,
+html[data-gddm-active="true"] .appsDocsUiWizFindbarCard,
+html[data-gddm-active="true"] #docs-slidingdialog-content {
+  background-color: var(--gddm-surface) !important;
+  color: var(--gddm-text) !important;
+  border: 1px solid var(--gddm-border) !important;
+  box-shadow: var(--gddm-shadow) !important;
+}
+
+html[data-gddm-active="true"] .javascriptMaterialdesignGm3WizDialog-dialog__title-text,
+html[data-gddm-active="true"] .documentMetricsDialogCounts,
+html[data-gddm-active="true"] .documentMetricsDialogValues,
+html[data-gddm-active="true"] .appsDocsUiWizFindandreplacedialogTitle,
+html[data-gddm-active="true"] .javascriptMaterialdesignGm3WizCheckbox-checkbox__label,
+html[data-gddm-active="true"] .javascriptMaterialdesignGm3WizDialog-dialog__surface label,
+html[data-gddm-active="true"] .appsDocsUiWizFindandreplacedialogCard label,
+html[data-gddm-active="true"] .appsDocsUiWizFindbarCard label {
+  color: var(--gddm-text) !important;
+}
+
+html[data-gddm-active="true"] .javascriptMaterialdesignGm3WizTextFieldOutlined-text-field__input,
+html[data-gddm-active="true"] .javascriptMaterialdesignGm3WizDialog-dialog__surface input,
+html[data-gddm-active="true"] .javascriptMaterialdesignGm3WizDialog-dialog__surface select,
+html[data-gddm-active="true"] .javascriptMaterialdesignGm3WizDialog-dialog__surface textarea,
+html[data-gddm-active="true"] .appsDocsUiWizFindandreplacedialogCard input,
+html[data-gddm-active="true"] .appsDocsUiWizFindbarCard input {
+  background-color: var(--gddm-surface-2) !important;
+  color: var(--gddm-text) !important;
+  caret-color: var(--gddm-caret) !important;
+  border-color: var(--gddm-border) !important;
+}
+
+html[data-gddm-active="true"] .javascriptMaterialdesignGm3WizDialog-dialog__surface [role="combobox"],
+html[data-gddm-active="true"] .javascriptMaterialdesignGm3WizDialog-dialog__surface [role="listbox"],
+html[data-gddm-active="true"] .javascriptMaterialdesignGm3WizDialog-dialog__surface [role="tab"] {
+  background-color: var(--gddm-surface-2) !important;
+  color: var(--gddm-text) !important;
+  border-color: var(--gddm-border) !important;
+}
+
+/* ---------- Menu-Search (Omnibox) Autocomplete Dropdown ---------- */
+
+html[data-gddm-active="true"] .docs-omnibox-autocomplete,
+html[data-gddm-active="true"] .docs-omnibox-autocomplete > .ac-renderer,
+html[data-gddm-active="true"] .ac-renderer {
+  background-color: var(--gddm-surface) !important;
+  color: var(--gddm-text) !important;
+  border: 1px solid var(--gddm-border) !important;
+  box-shadow: var(--gddm-shadow) !important;
+}
+
+html[data-gddm-active="true"] .ac-renderer .ac-row,
+html[data-gddm-active="true"] .docs-omnibox-row-content {
+  background-color: var(--gddm-surface) !important;
+  color: var(--gddm-text) !important;
+}
+
+html[data-gddm-active="true"] .ac-renderer .ac-active,
+html[data-gddm-active="true"] .ac-renderer .ac-row:hover {
+  background-color: var(--gddm-surface-hover) !important;
+}
+
+/* ---------- Hover Tooltips ---------- */
+
+html[data-gddm-active="true"] .jfk-tooltip,
+html[data-gddm-active="true"] .jfk-tooltip-contentId {
+  background-color: var(--gddm-surface-2) !important;
+  color: var(--gddm-text) !important;
+  border-color: var(--gddm-border) !important;
+}
+
+html[data-gddm-active="true"] .jfk-tooltip-arrow .jfk-tooltip-arrowimplbefore,
+html[data-gddm-active="true"] .jfk-tooltip-arrow .jfk-tooltip-arrowimplafter {
+  border-color: var(--gddm-surface-2) transparent !important;
+}
+
+/* ---------- Gemini Side Panel & Blank-Doc Barkick Prompt Pill ---------- */
+
+html[data-gddm-active="true"] .appsElementsSidekickPromptBox,
+html[data-gddm-active="true"] .appsElementsPromptBoxRoot,
+html[data-gddm-active="true"] .appsElementsSidekickBarkickPromptBox,
+html[data-gddm-active="true"] .appsElementsSidekickBarkickBarkick {
+  background-color: var(--gddm-surface-2) !important;
+  color: var(--gddm-text) !important;
+  border-color: var(--gddm-border) !important;
+}
+
+html[data-gddm-active="true"] .appsElementsSidekickPromptInput,
+html[data-gddm-active="true"] [contenteditable="true"][aria-label="Ask Gemini"],
+html[data-gddm-active="true"] [aria-label="Write with Gemini"] {
+  background-color: transparent !important;
+  color: var(--gddm-text) !important;
+  caret-color: var(--gddm-caret) !important;
+}
+
+html[data-gddm-active="true"] .appsElementsSidekickFeedDisclaimer,
+html[data-gddm-active="true"] .appsElementsSidekickFeedDisclaimer * {
+  color: var(--gddm-text-muted) !important;
+}
+
+/* ---------- Tab Comment-Count Badge ---------- */
+
+html[data-gddm-active="true"] .chapterDocoIndicatorViewText {
+  color: var(--gddm-bg) !important;
+  font-weight: 600;
+}
+
+/* ---------- Share Dialog Iframe (/drivesharing/dialog/share) ---------- */
+
+html[data-gddm-active="true"] .full-screen-share-client-dialog {
+  background-color: rgba(0, 0, 0, 0.55) !important;
+}
+
+html[data-gddm-share-dialog="true"] {
+  background-color: transparent !important;
+}
+
+html[data-gddm-share-dialog="true"] body {
+  background-color: transparent !important;
+  filter: invert(0.89) hue-rotate(180deg);
+}
+
+html[data-gddm-share-dialog="true"] img,
+html[data-gddm-share-dialog="true"] video {
+  filter: invert(1) hue-rotate(180deg);
 }
 
 /* ---------- Google Docs Home Screen (Recent Docs & Templates) ---------- */

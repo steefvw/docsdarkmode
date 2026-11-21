@@ -57,7 +57,9 @@
     if (!root) return;
 
     const active = isDarkActive(currentSettings);
-    root.dataset.gddmActive = active ? "true" : "false";
+    const isShareDialog = window.location.pathname.includes("/drivesharing/");
+    root.dataset.gddmActive = active && !isShareDialog ? "true" : "false";
+    root.dataset.gddmShareDialog = active && isShareDialog ? "true" : "false";
     root.dataset.gddmTheme = currentSettings.theme;
     root.dataset.gddmInvertPage = currentSettings.invertPage ? "true" : "false";
 

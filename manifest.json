@@ -38,6 +38,20 @@
       ],
       "run_at": "document_start",
       "all_frames": false
+    },
+    {
+      "matches": [
+        "https://docs.google.com/drivesharing/*",
+        "https://drive.google.com/drivesharing/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "styles/dark-mode.css"
+      ],
+      "run_at": "document_start",
+      "all_frames": true
     }
   ],
   "commands": {
