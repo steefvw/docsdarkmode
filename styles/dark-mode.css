@@ -278,20 +278,22 @@ html[data-gddm-active="true"] #docs-toolbar-wrapper .goog-toolbar-combo-button-d
 
 /* ---------- Icons (Sprites + Inline SVGs) ---------- */
 
-/* Sprite-based icons */
-html[data-gddm-active="true"] #docs-toolbar-wrapper .docs-icon-img:not(:has(svg)),
-html[data-gddm-active="true"] #docs-header .docs-icon-img:not(:has(svg)),
-html[data-gddm-active="true"] .goog-menu .docs-icon-img:not(:has(svg)),
-html[data-gddm-active="true"] .left-sidebar-container .docs-icon-img:not(:has(svg)),
-html[data-gddm-active="true"] .navigation-widget .docs-icon-img:not(:has(svg)),
-html[data-gddm-active="true"] .docs-companion-app-switcher-container .docs-icon-img:not(:has(svg)),
-html[data-gddm-active="true"] .companion-collapser-button-container .docs-icon-img:not(:has(svg)),
-html[data-gddm-active="true"] .docs-toolbar-mode-switcher .docs-icon-img:not(:has(svg)),
-html[data-gddm-active="true"] .docs-sidebar-gm-titlebar-icon-button .docs-icon-img:not(:has(svg)),
-html[data-gddm-active="true"] .docos-stream-view .docs-icon-img:not(:has(svg)),
-html[data-gddm-active="true"] .docs-gm-sidebars .docs-icon-img:not(:has(svg)),
-html[data-gddm-active="true"] .appsDocsUiWizFindbarCard .docs-icon-img:not(:has(svg)),
-html[data-gddm-active="true"] .appsDocsUiWizFindandreplacedialogCard .docs-icon-img:not(:has(svg)),
+/* Sprite-based icons (exclude SVG-masked icons which are already light via background-color) */
+html[data-gddm-active="true"] #docs-toolbar-wrapper .docs-icon-img:not(:has(svg)):not(.docs-icon-masked-image),
+html[data-gddm-active="true"] #docs-header .docs-icon-img:not(:has(svg)):not(.docs-icon-masked-image),
+html[data-gddm-active="true"] .goog-menu .docs-icon-img:not(:has(svg)):not(.docs-icon-masked-image),
+html[data-gddm-active="true"] .left-sidebar-container .docs-icon-img:not(:has(svg)):not(.docs-icon-masked-image),
+html[data-gddm-active="true"] .navigation-widget .docs-icon-img:not(:has(svg)):not(.docs-icon-masked-image),
+html[data-gddm-active="true"] .docs-companion-app-switcher-container .docs-icon-img:not(:has(svg)):not(.docs-icon-masked-image),
+html[data-gddm-active="true"] .companion-collapser-button-container .docs-icon-img:not(:has(svg)):not(.docs-icon-masked-image),
+html[data-gddm-active="true"] .docs-toolbar-mode-switcher .docs-icon-img:not(:has(svg)):not(.docs-icon-masked-image),
+html[data-gddm-active="true"] .docs-sidebar-gm-titlebar-icon-button .docs-icon-img:not(:has(svg)):not(.docs-icon-masked-image),
+html[data-gddm-active="true"] .docos-stream-view .docs-icon-img:not(:has(svg)):not(.docs-icon-masked-image),
+html[data-gddm-active="true"] .docs-gm-sidebars .docs-icon-img:not(:has(svg)):not(.docs-icon-masked-image),
+html[data-gddm-active="true"] .docos-subscription-settings-button .docs-icon-notifications-24,
+html[data-gddm-active="true"] .docos-search-button .docs-icon-search-24,
+html[data-gddm-active="true"] .appsDocsUiWizFindbarCard .docs-icon-img:not(:has(svg)):not(.docs-icon-masked-image),
+html[data-gddm-active="true"] .appsDocsUiWizFindandreplacedialogCard .docs-icon-img:not(:has(svg)):not(.docs-icon-masked-image),
 html[data-gddm-active="true"] [aria-label="Get Add-ons"] .app-switcher-button-icon-container {
   filter: invert(0.88) hue-rotate(180deg) !important;
 }
@@ -761,7 +763,9 @@ html[data-gddm-active="true"] .full-screen-share-client-dialog {
   background-color: rgba(0, 0, 0, 0.55) !important;
 }
 
+/* Match outer page color-scheme: dark so Chromium keeps the iframe canvas transparent */
 html[data-gddm-share-dialog="true"] {
+  color-scheme: dark;
   background-color: transparent !important;
 }
 
