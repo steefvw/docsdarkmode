@@ -1034,7 +1034,8 @@ html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-sidebar label {
   color: var(--gddm-text) !important;
 }
 
-html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-conditionalformat-range {
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-conditionalformat-range,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-datavalidation-view-pill-range {
   color: var(--gddm-text-muted) !important;
 }
 
