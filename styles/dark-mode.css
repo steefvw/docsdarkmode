@@ -1032,10 +1032,15 @@ html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-sidebar-container 
   [class*="-title"],
   [class*="-label"],
   [class*="-name"],
-  [class*="-condition"],
+  .waffle-conditionalformat-condition,
   [class*="-summary"]
-):not([class*="preview"]):not([class*="swatch"]):not([class*="color-indicator"]) {
+):not([class*="preview"]):not([class*="swatch"]):not([class*="color-indicator"]):not(.waffle-conditionalformat-format-button):not([style*="background-color"]) {
   color: var(--gddm-text) !important;
+}
+
+/* Keep light Alternating Colors custom-color preview tile labels dark and legible */
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-banding-sidebar-color-preview-label {
+  color: #1f1f1f !important;
 }
 
 html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-sidebar-container :is(
