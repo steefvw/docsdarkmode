@@ -1024,22 +1024,33 @@ html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-range-selection-in
   caret-color: var(--gddm-caret) !important;
 }
 
-html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-conditionalformat-edit-pill-section-header,
-html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-conditionalformat-edit-pill-section-label,
-html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-conditionalformat-condition,
-html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-datavalidation-edit-pill-section-header,
-html[data-gddm-active="true"][data-gddm-app="sheets"] .docs-charts-editor-control-label,
-html[data-gddm-active="true"][data-gddm-app="sheets"] .docs-charts-editor-chip-label,
-html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-sidebar label {
+/* Broad text fallback for all Sheets sidebars (Conditional Formatting, Data Validation, Chart Editor,
+   Pivot Table, Protected Ranges, Named Ranges, Alternating Colors) while preserving color previews/swatches */
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-sidebar-container :is(
+  h1, h2, h3, h4, p, label, legend,
+  [class*="-header"],
+  [class*="-title"],
+  [class*="-label"],
+  [class*="-name"],
+  [class*="-condition"],
+  [class*="-summary"]
+):not([class*="preview"]):not([class*="swatch"]):not([class*="color-indicator"]) {
   color: var(--gddm-text) !important;
 }
 
-html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-conditionalformat-range,
-html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-datavalidation-view-pill-range {
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-sidebar-container :is(
+  [class*="-range"],
+  [class*="-subtitle"],
+  [class*="-description"],
+  .waffle-conditionalformat-range,
+  .waffle-datavalidation-view-pill-range
+):not([class*="preview"]):not([class*="swatch"]):not(input) {
   color: var(--gddm-text-muted) !important;
 }
 
-html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-datavalidation-edit-pill-remove-button {
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-datavalidation-edit-pill-remove-button,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-sidebar-container [class*="-remove-button"],
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-sidebar-container [class*="-add-button"] {
   color: var(--gddm-accent) !important;
 }
 
@@ -1060,6 +1071,12 @@ html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-sidebar [role="lis
   border-color: var(--gddm-border) !important;
 }
 
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-sidebar-container .docs-icon-img:not(:has(svg)):not(.docs-icon-masked-image):not(.docs-icon-color-indicator),
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-sidebar .docs-icon-img:not(:has(svg)):not(.docs-icon-masked-image):not(.docs-icon-color-indicator) {
+  filter: invert(0.88) hue-rotate(180deg) !important;
+}
+
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-sidebar-container svg path:not([fill="none"]),
 html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-sidebar svg path:not([fill="none"]) {
   fill: var(--gddm-text) !important;
 }
