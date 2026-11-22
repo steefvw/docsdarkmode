@@ -751,6 +751,13 @@ html[data-gddm-active="true"] [aria-label="Write with Gemini"] {
   caret-color: var(--gddm-caret) !important;
 }
 
+/* Keep Gemini & Docs writing-pill placeholders legible even when the window/input has focus */
+html[data-gddm-active="true"] .appsElementsRichTextInputContentEditable.appsElementsSidekickPromptInput::before,
+html[data-gddm-active="true"] .appsElementsSidekickPromptInput::before,
+html[data-gddm-active="true"] .appsElementsRichTextInputPlaceholderTextContent {
+  color: var(--gddm-text-muted) !important;
+}
+
 html[data-gddm-active="true"] .appsElementsSidekickFeedDisclaimer,
 html[data-gddm-active="true"] .appsElementsSidekickFeedDisclaimer * {
   color: var(--gddm-text-muted) !important;
@@ -1048,6 +1055,42 @@ html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-sidebar-container 
 html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-conditionalformat-view-pill:hover,
 html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-datavalidation-view-pill:hover {
   background-color: var(--gddm-surface-hover) !important;
+}
+
+/* Pivot Table recommendations, creation dialog labels, and sidebar search placeholders */
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-pivot-recommendation-text,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-sdsd-rangepicker-label,
+html[data-gddm-active="true"][data-gddm-app="sheets"] #waffle-sdsd-rangepicker-label-id,
+html[data-gddm-active="true"][data-gddm-app="sheets"] #insertOptionHeader,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-source-destination-selection-dialog label {
+  color: var(--gddm-text) !important;
+}
+
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-pivot-column-names-container .goog-menu-filter > input::placeholder,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-sidebar-container input::placeholder {
+  color: var(--gddm-text-muted) !important;
+  opacity: 1 !important;
+}
+
+/* Brighten secondary green/blue action buttons and filter links for high contrast on dark surfaces */
+html[data-gddm-active="true"][data-gddm-app="sheets"] #waffle-conditionalformat-cancel-button,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-conditionalformat-add-another-rule-button,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-filterbox-cancel-button > .jfk-button-standard,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-filterbox-select-all-button > .goog-link-button,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-filterbox-clear-button > .goog-link-button,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-sidebar-container [id*="cancel-button"],
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-sidebar-container .jfk-button-standard,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-filtermenu .goog-link-button {
+  color: var(--gddm-accent) !important;
+}
+
+/* Chart Editor Customize accordion background & borders */
+html[data-gddm-active="true"][data-gddm-app="sheets"] .docs-charts-editor-customize-tab {
+  background-color: var(--gddm-surface) !important;
+}
+
+html[data-gddm-active="true"][data-gddm-app="sheets"] .docs-charts-editor-bundle > div {
+  border-color: var(--gddm-border) !important;
 }
 
 html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-sidebar-container :is(
