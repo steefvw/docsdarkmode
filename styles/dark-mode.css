@@ -1043,6 +1043,13 @@ html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-banding-sidebar-co
   color: #1f1f1f !important;
 }
 
+/* Prevent sidebar rule pills from flashing light gray on hover */
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-sidebar-container [class*="-view-pill"]:hover,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-conditionalformat-view-pill:hover,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-datavalidation-view-pill:hover {
+  background-color: var(--gddm-surface-hover) !important;
+}
+
 html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-sidebar-container :is(
   [class*="-range"],
   [class*="-subtitle"],
