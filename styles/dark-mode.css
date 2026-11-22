@@ -292,6 +292,9 @@ html[data-gddm-active="true"] .docos-stream-view .docs-icon-img:not(:has(svg)):n
 html[data-gddm-active="true"] .docs-gm-sidebars .docs-icon-img:not(:has(svg)):not(.docs-icon-masked-image),
 html[data-gddm-active="true"] .docos-subscription-settings-button .docs-icon-notifications-24,
 html[data-gddm-active="true"] .docos-search-button .docs-icon-search-24,
+html[data-gddm-active="true"] .docs-slidingdialog-button-close .docs-icon-close,
+html[data-gddm-active="true"] .docs-slidingdialog .docs-icon-img:not(:has(svg)):not(.docs-icon-masked-image),
+html[data-gddm-active="true"] .modal-dialog-title-close,
 html[data-gddm-active="true"] .appsDocsUiWizFindbarCard .docs-icon-img:not(:has(svg)):not(.docs-icon-masked-image),
 html[data-gddm-active="true"] .appsDocsUiWizFindandreplacedialogCard .docs-icon-img:not(:has(svg)):not(.docs-icon-masked-image),
 html[data-gddm-active="true"] [aria-label="Get Add-ons"] .app-switcher-button-icon-container {
@@ -849,6 +852,8 @@ html[data-gddm-active="true"] ::-webkit-scrollbar-thumb:hover {
 html[data-gddm-active="true"][data-gddm-app="sheets"] #formula-bar,
 html[data-gddm-active="true"][data-gddm-app="sheets"] #formula-bar-dragger,
 html[data-gddm-active="true"][data-gddm-app="sheets"] .formula-bar-container,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .formula-bar-with-name-box-wrapper,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .FormulaBarContainerFormulaBarWrapperWithSummarizeButton,
 html[data-gddm-active="true"][data-gddm-app="sheets"] #t-formula-bar-input-container,
 html[data-gddm-active="true"][data-gddm-app="sheets"] #t-name-box-wrapper,
 html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-name-box-container,
@@ -858,15 +863,18 @@ html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-name-box-wrapper {
   border-color: var(--gddm-border) !important;
 }
 
-html[data-gddm-active="true"][data-gddm-app="sheets"] #t-name-box,
-html[data-gddm-active="true"][data-gddm-app="sheets"] #t-formula-bar-input,
-html[data-gddm-active="true"][data-gddm-app="sheets"] .cell-input[aria-label],
-html[data-gddm-active="true"][data-gddm-app="sheets"] .formula-content,
-html[data-gddm-active="true"][data-gddm-app="sheets"] .formula-bar-input {
+html[data-gddm-active="true"][data-gddm-app="sheets"] #t-name-box {
   background-color: var(--gddm-surface) !important;
   color: var(--gddm-text) !important;
   caret-color: var(--gddm-caret) !important;
   border-color: var(--gddm-border) !important;
+}
+
+/* Invert the Formula Bar visually while keeping native #000 text color so Sheets never saves pale font colors */
+html[data-gddm-active="true"][data-gddm-app="sheets"] #t-formula-bar-input {
+  background-color: #ffffff !important;
+  color: #000000;
+  filter: invert(0.88) hue-rotate(180deg) !important;
 }
 
 html[data-gddm-active="true"][data-gddm-app="sheets"] .formula-bar-separator,
@@ -887,14 +895,16 @@ html[data-gddm-active="true"][data-gddm-app="sheets"] #formula-bar svg path:not(
 
 /* ---------- Spreadsheet Grid Container & Canvas Inversion ---------- */
 
+/* Only tint outer containers behind the canvas; keep z-index overlays (.grid-table-container, .grid4-inner-container, .grid-scrollable-wrapper) transparent */
 html[data-gddm-active="true"][data-gddm-app="sheets"] #waffle-grid-container,
-html[data-gddm-active="true"][data-gddm-app="sheets"] .grid-container,
-html[data-gddm-active="true"][data-gddm-app="sheets"] .grid-table-container,
-html[data-gddm-active="true"][data-gddm-app="sheets"] .grid-scrollable-wrapper,
-html[data-gddm-active="true"][data-gddm-app="sheets"] .grid4-inner-container,
-html[data-gddm-active="true"][data-gddm-app="sheets"] .grid-shim,
-html[data-gddm-active="true"][data-gddm-app="sheets"] .native-scrollbar {
+html[data-gddm-active="true"][data-gddm-app="sheets"] .grid-container {
   background-color: var(--gddm-workspace-bg) !important;
+}
+
+html[data-gddm-active="true"][data-gddm-app="sheets"] .grid-table-container,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .grid4-inner-container,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .grid-scrollable-wrapper {
+  background-color: transparent !important;
 }
 
 html[data-gddm-active="true"][data-gddm-app="sheets"][data-gddm-invert-page="true"] #waffle-grid-container canvas,
@@ -904,13 +914,19 @@ html[data-gddm-active="true"][data-gddm-app="sheets"][data-gddm-invert-page="tru
   transition: filter 120ms ease;
 }
 
-/* Inline cell editor overlay when typing in a dark sheet */
-html[data-gddm-active="true"][data-gddm-app="sheets"][data-gddm-invert-page="true"] .cell-input,
+/* Reset inherited dark body color on the inline cell editor (non-!important so inline cell formatting wins)
+   so Google Sheets never persists pale text into cells; invert visually via filter when dark grid is on. */
+html[data-gddm-active="true"][data-gddm-app="sheets"] #waffle-rich-text-editor,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-rich-text-editor,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .grid-container .cell-input {
+  color: #000000;
+  background-color: #ffffff;
+}
+
+html[data-gddm-active="true"][data-gddm-app="sheets"][data-gddm-invert-page="true"] #waffle-rich-text-editor,
 html[data-gddm-active="true"][data-gddm-app="sheets"][data-gddm-invert-page="true"] .waffle-rich-text-editor,
-html[data-gddm-active="true"][data-gddm-app="sheets"][data-gddm-invert-page="true"] #waffle-rich-text-editor {
-  background-color: var(--gddm-surface) !important;
-  color: var(--gddm-text) !important;
-  caret-color: var(--gddm-caret) !important;
+html[data-gddm-active="true"][data-gddm-app="sheets"][data-gddm-invert-page="true"] .grid-container .cell-input {
+  filter: var(--gddm-canvas-filter) !important;
 }
 
 /* ---------- Bottom Sheet Tabs & Status Bar ---------- */
@@ -950,8 +966,16 @@ html[data-gddm-active="true"][data-gddm-app="sheets"] .docs-sheet-active-tab .do
 
 html[data-gddm-active="true"][data-gddm-app="sheets"] .docs-sheet-tab-name,
 html[data-gddm-active="true"][data-gddm-app="sheets"] .docs-sheet-tab-caption,
-html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-quick-sum-button {
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-quick-sum-button,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-quicksum-container,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-quicksum-container * {
   color: var(--gddm-text) !important;
+}
+
+/* Keep sheet-tab comment count legible inside its pale bubble */
+html[data-gddm-active="true"][data-gddm-app="sheets"] .docs-sheet-comment-indicator-text {
+  color: var(--gddm-bg) !important;
+  font-weight: 600;
 }
 
 html[data-gddm-active="true"][data-gddm-app="sheets"] .docs-sheet-container-bar .docs-icon-img:not(:has(svg)):not(.docs-icon-masked-image),
@@ -979,6 +1003,33 @@ html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-sidebar-section {
   border-color: var(--gddm-border) !important;
 }
 
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-sidebar-container .waffle-range-selection-container,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-range-selection-container {
+  background-color: var(--gddm-surface-2) !important;
+  border-color: var(--gddm-border) !important;
+}
+
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-range-selection-input {
+  background-color: transparent !important;
+  color: var(--gddm-text) !important;
+  caret-color: var(--gddm-caret) !important;
+}
+
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-conditionalformat-edit-pill-section-header,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-conditionalformat-edit-pill-section-label,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .docs-charts-editor-control-label,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .docs-charts-editor-chip-label,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-sidebar label {
+  color: var(--gddm-text) !important;
+}
+
+html[data-gddm-active="true"][data-gddm-app="sheets"] .docs-charts-editor-chip,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-dropdown-chip {
+  background-color: var(--gddm-surface-2) !important;
+  color: var(--gddm-text) !important;
+  border: 1px solid var(--gddm-border) !important;
+}
+
 html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-sidebar input,
 html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-sidebar textarea,
 html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-sidebar select,
@@ -1001,7 +1052,11 @@ html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-arguments-help-pop
 html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-arguments-help-header,
 html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-arguments-help-body,
 html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-arguments-help-section,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-unified-formula-help-argument-help-container,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-arguments-help-title,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-filtermenu,
 html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-filter-menu,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-filterbox-boolean-condition-picker,
 html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-filter-list,
 html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-note-editor,
 html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-link-bubble,
@@ -1012,18 +1067,62 @@ html[data-gddm-active="true"][data-gddm-app="sheets"] .docs-linkbubble-bubble {
   box-shadow: var(--gddm-shadow) !important;
 }
 
-html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-filter-menu input,
-html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-note-editor textarea {
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-ac-row {
+  background-color: var(--gddm-surface) !important;
+  color: var(--gddm-text) !important;
+}
+
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-ac-row.waffle-ac-active,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-ac-row:hover {
+  background-color: var(--gddm-surface-hover) !important;
+}
+
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-function-autocomplete-row-name,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-arguments-help-parameter-content,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-arguments-help-section * {
+  color: var(--gddm-text) !important;
+}
+
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-unified-formula-help-argument-help-container,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-arguments-help-title {
   background-color: var(--gddm-surface-2) !important;
+}
+
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-filtermenu input,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-filter-menu input,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-note-editor textarea,
+html[data-gddm-active="true"][data-gddm-app="sheets"] textarea.annotation-editable {
+  background-color: var(--gddm-surface-2) !important;
+  color: var(--gddm-text) !important;
+  caret-color: var(--gddm-caret) !important;
+  border-color: var(--gddm-border) !important;
+}
+
+/* ---------- Docs & Sheets Home Screen Search, Suggestions & Drawer ---------- */
+
+html[data-gddm-active="true"] .docs-homescreen-leftmenu-drawer,
+html[data-gddm-active="true"] .docs-homescreen-search-input,
+html[data-gddm-active="true"] input.searchboxInputFontClass,
+html[data-gddm-active="true"] input.searchboxInputFontClass.gb_Ve,
+html[data-gddm-active="true"] .docs-homescreen-gb-container form[role="search"],
+html[data-gddm-active="true"] .gssb_m,
+html[data-gddm-active="true"] .gssb_m.ASO_SUGGESTIONS_TABLE,
+html[data-gddm-active="true"] .gssb_e {
+  background-color: var(--gddm-surface) !important;
   color: var(--gddm-text) !important;
   border-color: var(--gddm-border) !important;
 }
 
-/* ---------- Docs & Sheets Home Screen Search & Drawer ---------- */
-
-html[data-gddm-active="true"] .docs-homescreen-leftmenu-drawer,
-html[data-gddm-active="true"] .docs-homescreen-search-input {
+html[data-gddm-active="true"] .gssb_m td,
+html[data-gddm-active="true"] .gssb_a,
+html[data-gddm-active="true"] .gssb_a * {
   background-color: var(--gddm-surface) !important;
   color: var(--gddm-text) !important;
-  border-color: var(--gddm-border) !important;
+}
+
+html[data-gddm-active="true"] .gssb_i,
+html[data-gddm-active="true"] .gssb_i td,
+html[data-gddm-active="true"] .gssb_i * {
+  background-color: var(--gddm-surface-hover) !important;
+  color: var(--gddm-text) !important;
 }
