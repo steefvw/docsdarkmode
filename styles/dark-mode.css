@@ -295,6 +295,8 @@ html[data-gddm-active="true"] .docos-search-button .docs-icon-search-24,
 html[data-gddm-active="true"] .docs-slidingdialog-button-close .docs-icon-close,
 html[data-gddm-active="true"] .docs-slidingdialog .docs-icon-img:not(:has(svg)):not(.docs-icon-masked-image),
 html[data-gddm-active="true"] .modal-dialog-title-close,
+html[data-gddm-active="true"] .waffle-range-selection-button .docs-icon-grid,
+html[data-gddm-active="true"] .waffle-range-selection-button .docs-icon-img:not(:has(svg)):not(.docs-icon-masked-image),
 html[data-gddm-active="true"] .appsDocsUiWizFindbarCard .docs-icon-img:not(:has(svg)):not(.docs-icon-masked-image),
 html[data-gddm-active="true"] .appsDocsUiWizFindandreplacedialogCard .docs-icon-img:not(:has(svg)):not(.docs-icon-masked-image),
 html[data-gddm-active="true"] [aria-label="Get Add-ons"] .app-switcher-button-icon-container {
@@ -870,11 +872,17 @@ html[data-gddm-active="true"][data-gddm-app="sheets"] #t-name-box {
   border-color: var(--gddm-border) !important;
 }
 
-/* Invert the Formula Bar visually while keeping native #000 text color so Sheets never saves pale font colors */
+/* Invert the Formula Bar visually while keeping native #000 text & #fff surface inside so it inverts once cleanly and never saves pale font colors */
 html[data-gddm-active="true"][data-gddm-app="sheets"] #t-formula-bar-input {
   background-color: #ffffff !important;
   color: #000000;
   filter: invert(0.88) hue-rotate(180deg) !important;
+}
+
+html[data-gddm-active="true"][data-gddm-app="sheets"] #t-formula-bar-input .cell-input,
+html[data-gddm-active="true"][data-gddm-app="sheets"] #t-formula-bar-input .formula-content {
+  background-color: #ffffff !important;
+  color: #000000;
 }
 
 html[data-gddm-active="true"][data-gddm-app="sheets"] .formula-bar-separator,
@@ -916,16 +924,17 @@ html[data-gddm-active="true"][data-gddm-app="sheets"][data-gddm-invert-page="tru
 
 /* Reset inherited dark body color on the inline cell editor (non-!important so inline cell formatting wins)
    so Google Sheets never persists pale text into cells; invert visually via filter when dark grid is on. */
-html[data-gddm-active="true"][data-gddm-app="sheets"] #waffle-rich-text-editor,
-html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-rich-text-editor,
-html[data-gddm-active="true"][data-gddm-app="sheets"] .grid-container .cell-input {
+html[data-gddm-active="true"][data-gddm-app="sheets"] #waffle-rich-text-editor.cell-input {
   color: #000000;
   background-color: #ffffff;
 }
 
-html[data-gddm-active="true"][data-gddm-app="sheets"][data-gddm-invert-page="true"] #waffle-rich-text-editor,
-html[data-gddm-active="true"][data-gddm-app="sheets"][data-gddm-invert-page="true"] .waffle-rich-text-editor,
-html[data-gddm-active="true"][data-gddm-app="sheets"][data-gddm-invert-page="true"] .grid-container .cell-input {
+html[data-gddm-active="true"][data-gddm-app="sheets"][data-gddm-invert-page="true"] .input-box,
+html[data-gddm-active="true"][data-gddm-app="sheets"][data-gddm-invert-page="true"] .cell-input-container {
+  background-color: var(--gddm-surface) !important;
+}
+
+html[data-gddm-active="true"][data-gddm-app="sheets"][data-gddm-invert-page="true"] #waffle-rich-text-editor.cell-input {
   filter: var(--gddm-canvas-filter) !important;
 }
 
@@ -1017,10 +1026,20 @@ html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-range-selection-in
 
 html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-conditionalformat-edit-pill-section-header,
 html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-conditionalformat-edit-pill-section-label,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-conditionalformat-condition,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-datavalidation-edit-pill-section-header,
 html[data-gddm-active="true"][data-gddm-app="sheets"] .docs-charts-editor-control-label,
 html[data-gddm-active="true"][data-gddm-app="sheets"] .docs-charts-editor-chip-label,
 html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-sidebar label {
   color: var(--gddm-text) !important;
+}
+
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-conditionalformat-range {
+  color: var(--gddm-text-muted) !important;
+}
+
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-datavalidation-edit-pill-remove-button {
+  color: var(--gddm-accent) !important;
 }
 
 html[data-gddm-active="true"][data-gddm-app="sheets"] .docs-charts-editor-chip,
@@ -1078,9 +1097,19 @@ html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-ac-row:hover {
 }
 
 html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-function-autocomplete-row-name,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-arguments-help-formula,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-arguments-help-parameter,
 html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-arguments-help-parameter-content,
 html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-arguments-help-section * {
   color: var(--gddm-text) !important;
+}
+
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-arguments-help-function-name {
+  color: var(--gddm-accent) !important;
+}
+
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-function-autocomplete-row-description {
+  color: var(--gddm-text-muted) !important;
 }
 
 html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-unified-formula-help-argument-help-container,
