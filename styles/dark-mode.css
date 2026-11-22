@@ -338,13 +338,29 @@ html[data-gddm-active="true"] #docs-branding-logo svg,
 html[data-gddm-active="true"] .docs-icon-docs-logo,
 html[data-gddm-active="true"] .docs-icon-sheets-logo,
 html[data-gddm-active="true"] .docs-icon-color-indicator,
-html[data-gddm-active="true"] .docs-titlebar-share-client-button .docs-icon-img,
 html[data-gddm-active="true"] .docs-titlebar-buttons img {
   filter: none !important;
 }
 
-html[data-gddm-active="true"] #docs-titlebar-share-client-button svg path:not([fill="none"]) {
+/* Keep Share button lock icon and dropdown chevron crisp light on the dark-blue Share pill */
+html[data-gddm-active="true"] #docs-titlebar-share-client-button .docs-icon-img:not(:has(svg)):not(.docs-icon-masked-image),
+html[data-gddm-active="true"] .docs-titlebar-share-client-button .docs-icon-img:not(:has(svg)):not(.docs-icon-masked-image) {
+  filter: brightness(0) invert(0.95) !important;
+}
+
+html[data-gddm-active="true"] #docs-titlebar-share-client-button .docs-icon-masked-image,
+html[data-gddm-active="true"] .docs-titlebar-share-client-button .docs-icon-masked-image {
+  background-color: #e8f0fe !important;
+}
+
+html[data-gddm-active="true"] #docs-titlebar-share-client-button svg path:not([fill="none"]),
+html[data-gddm-active="true"] .docs-titlebar-share-client-button svg path:not([fill="none"]) {
   fill: #e8f0fe !important;
+}
+
+html[data-gddm-active="true"] #docs-titlebar-share-client-button .jfk-button-dropdown,
+html[data-gddm-active="true"] .docs-titlebar-share-client-button .jfk-button-dropdown {
+  border-top-color: #e8f0fe !important;
 }
 
 /* ---------- Horizontal & Vertical Rulers ---------- */
@@ -831,25 +847,54 @@ html[data-gddm-active="true"] .docs-homescreen-list-item-time {
   color: var(--gddm-text-muted) !important;
 }
 
-/* ---------- Scrollbars ---------- */
+/* ---------- Scrollbars (tracks, thumbs, corners & stepper buttons) ---------- */
 
-html[data-gddm-active="true"] ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+html[data-gddm-active="true"] ::-webkit-scrollbar,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .native-scrollbar::-webkit-scrollbar,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .native-scrollbar-x::-webkit-scrollbar,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .native-scrollbar-y::-webkit-scrollbar {
+  width: 10px !important;
+  height: 10px !important;
+  background-color: var(--gddm-bg) !important;
 }
 
-html[data-gddm-active="true"] ::-webkit-scrollbar-track {
-  background: var(--gddm-bg);
+html[data-gddm-active="true"] ::-webkit-scrollbar-track,
+html[data-gddm-active="true"] ::-webkit-scrollbar-track-piece,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .native-scrollbar::-webkit-scrollbar-track,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .native-scrollbar::-webkit-scrollbar-track-piece {
+  background: var(--gddm-bg) !important;
 }
 
-html[data-gddm-active="true"] ::-webkit-scrollbar-thumb {
-  background-color: var(--gddm-surface-hover);
-  border-radius: 6px;
-  border: 2px solid var(--gddm-bg);
+html[data-gddm-active="true"] ::-webkit-scrollbar-thumb,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .native-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--gddm-surface-hover) !important;
+  border-radius: 6px !important;
+  border: 2px solid var(--gddm-bg) !important;
 }
 
-html[data-gddm-active="true"] ::-webkit-scrollbar-thumb:hover {
-  background-color: var(--gddm-surface-active);
+html[data-gddm-active="true"] ::-webkit-scrollbar-thumb:hover,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .native-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: var(--gddm-surface-active) !important;
+}
+
+html[data-gddm-active="true"] ::-webkit-scrollbar-corner,
+html[data-gddm-active="true"] ::-webkit-resizer,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .native-scrollbar::-webkit-scrollbar-corner,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .native-scrollbar-x::-webkit-scrollbar-corner,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .native-scrollbar-y::-webkit-scrollbar-corner {
+  background: var(--gddm-bg) !important;
+  background-color: var(--gddm-bg) !important;
+}
+
+/* Hide legacy light WebKit scrollbar stepper arrows (▲▼ / ◀▶) so scrollbars stay seamless */
+html[data-gddm-active="true"] ::-webkit-scrollbar-button,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .native-scrollbar::-webkit-scrollbar-button,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .native-scrollbar-x::-webkit-scrollbar-button,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .native-scrollbar-y::-webkit-scrollbar-button {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: var(--gddm-bg) !important;
 }
 
 /* ==========================================================================
@@ -920,6 +965,32 @@ html[data-gddm-active="true"][data-gddm-app="sheets"] .grid-table-container,
 html[data-gddm-active="true"][data-gddm-app="sheets"] .grid4-inner-container,
 html[data-gddm-active="true"][data-gddm-app="sheets"] .grid-scrollable-wrapper {
   background-color: transparent !important;
+}
+
+/* Darken Sheets scrollbar gutter shims (bottom-left, top-right, bottom-right corners) & scrollbar containers */
+html[data-gddm-active="true"][data-gddm-app="sheets"] [class*="grid-shim"],
+html[data-gddm-active="true"][data-gddm-app="sheets"] .grid-shim,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .grid-shim-bottom,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .grid-shim-top,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .grid-shim-end-ltr,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .grid-shim-end-rtl,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .grid-shim-start-ltr,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .grid-shim-start-rtl,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .native-scrollbar,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .native-scrollbar-x,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .native-scrollbar-y,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .native-scrollbar-ltr,
+html[data-gddm-active="true"][data-gddm-app="sheets"] [class*="scrollbar-corner"],
+html[data-gddm-active="true"][data-gddm-app="sheets"] .grid-corner {
+  background-color: var(--gddm-bg) !important;
+  border-color: var(--gddm-border) !important;
+}
+
+/* Soften freeze-pane drag handles next to row/column headers */
+html[data-gddm-active="true"][data-gddm-app="sheets"] .freezebar-vertical-handle,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .freezebar-horizontal-handle {
+  background-color: var(--gddm-border) !important;
+  border-color: var(--gddm-border) !important;
 }
 
 html[data-gddm-active="true"][data-gddm-app="sheets"][data-gddm-invert-page="true"] #waffle-grid-container canvas,
