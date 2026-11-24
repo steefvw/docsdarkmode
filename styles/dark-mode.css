@@ -1299,3 +1299,67 @@ html[data-gddm-active="true"] .gssb_i * {
   background-color: var(--gddm-surface-hover) !important;
   color: var(--gddm-text) !important;
 }
+
+/* ---------- Apps Script & Workspace Toast Popups (Bottom-Right) ---------- */
+
+html[data-gddm-active="true"] .docs-ui-toast,
+html[data-gddm-active="true"] .apps-toast,
+html[data-gddm-active="true"] .waffle-toast,
+html[data-gddm-active="true"] .toast-box,
+html[data-gddm-active="true"] .toast-panel,
+html[data-gddm-active="true"] .toast,
+html[data-gddm-active="true"] div:has(> .toast-title),
+html[data-gddm-active="true"] div:has(> .apps-toast-content),
+html[data-gddm-active="true"] div:has(> .toast-close-bar),
+html[data-gddm-active="true"] div:has(> .docs-ui-toast-close-bar),
+html[data-gddm-active="true"] div:has(> .docs-ui-toast-content),
+html[data-gddm-active="true"] table:has(.toast-title),
+html[data-gddm-active="true"] td:has(.toast-title) {
+  background-color: var(--gddm-surface) !important;
+  color: var(--gddm-text) !important;
+  border-color: var(--gddm-border) !important;
+  box-shadow: var(--gddm-shadow) !important;
+}
+
+html[data-gddm-active="true"] .toast-title,
+html[data-gddm-active="true"] .apps-toast-content,
+html[data-gddm-active="true"] .docs-ui-toast-content {
+  background-color: transparent !important;
+  color: var(--gddm-text) !important;
+}
+
+html[data-gddm-active="true"] .toast-close-bar,
+html[data-gddm-active="true"] .docs-ui-toast-close-bar,
+html[data-gddm-active="true"] .docs-ui-toast-close,
+html[data-gddm-active="true"] .toast-close {
+  background-color: transparent !important;
+  color: var(--gddm-text-muted) !important;
+}
+
+html[data-gddm-active="true"] .docs-ui-toast-close:hover,
+html[data-gddm-active="true"] .toast-close:hover {
+  color: var(--gddm-text) !important;
+}
+
+html[data-gddm-active="true"] .docs-ui-toast-control-bar,
+html[data-gddm-active="true"] .docs-ui-toast-control {
+  color: var(--gddm-accent) !important;
+}
+
+/* ---------- Google Sheets GOOGLEFINANCE Disclaimer Bar ---------- */
+
+html[data-gddm-active="true"][data-gddm-app="sheets"] #waffle-disclaimer-bar,
+html[data-gddm-active="true"][data-gddm-app="sheets"] #waffle-disclaimer-content,
+html[data-gddm-active="true"][data-gddm-app="sheets"] #waffle-disclaimer-bar tr,
+html[data-gddm-active="true"][data-gddm-app="sheets"] #waffle-disclaimer-bar td,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-disclaimer {
+  background-color: var(--gddm-surface) !important;
+  color: var(--gddm-text-muted) !important;
+  border-color: var(--gddm-border) !important;
+}
+
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-disclaimer-link,
+html[data-gddm-active="true"][data-gddm-app="sheets"] #waffle-disclaimer-bar a,
+html[data-gddm-active="true"][data-gddm-app="sheets"] .waffle-disclaimer a {
+  color: var(--gddm-accent) !important;
+}
